@@ -6,3 +6,5 @@ __pycache__/
 .vscode/
 data/documents/*
 !data/documents/.gitkeep
+build/
+*.egg-info/
