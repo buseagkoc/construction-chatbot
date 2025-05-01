@@ -11,6 +11,12 @@ license = { text="MIT" }
 readme = "README.md"
 requires-python = ">=3.9"
 
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "pytest-asyncio"
+]
+
 dependencies = [
     "fastapi", "uvicorn", "chromadb", "openai", "redis.asyncio",
     "pydantic-settings", "python-dotenv", "PyMuPDF", "typer"
