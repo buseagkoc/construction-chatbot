@@ -21,7 +21,10 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -e .[dev]
+          # quote the extras so bash doesn’t glob [dev]
+          pip install -e ".[dev]"
 
       - name: Run tests
-        run: pytest
+        run: |
+          # invoke via python so the entrypoint is guaranteed
+          python -m pytest -v
