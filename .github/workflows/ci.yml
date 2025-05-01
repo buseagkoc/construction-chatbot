@@ -21,10 +21,10 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          # quote the extras so bash doesn’t glob [dev]
           pip install -e ".[dev]"
 
+      - name: Set dummy OPENAI_API_KEY for tests
+        run: echo "OPENAI_API_KEY=test_key" >> $GITHUB_ENV
+
       - name: Run tests
-        run: |
-          # invoke via python so the entrypoint is guaranteed
-          python -m pytest -v
+        run: python -m pytest -v
