@@ -91,11 +91,7 @@ async def shutdown_event():
     except Exception as e:
         logger.error(f"Error during shutdown: {e}")
 
-if __name__ == "__main__":
+def start():
     import uvicorn
-    uvicorn.run(
-        app,
-        host="0.0.0.0",
-        port=8000,
-        log_level="info"
-    )
+    uvicorn.run("construction_chatbot.webserver:app", host="0.0.0.0", port=8000, log_level="info")
+

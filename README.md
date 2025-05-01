@@ -1,89 +1,105 @@
-# Construction Document Chatbot
+# Construction Chatbot
 
-A RAG-based chatbot for querying construction documents and Florida construction law. Built with FastAPI and OpenAI, this system allows efficient document processing and intelligent querying of construction specifications and regulations.
+[![PyPI version](https://img.shields.io/badge/pypi-coming_soon-blue)]  
+[![CI](https://github.com/buseagkoc/construction-chatbot/actions/workflows/ci.yml/badge.svg)]
+
+A lightweight RAG-powered chatbot built to query construction documents like specs, contracts, and legal PDFs using natural language. Whether you're using the command line or testing endpoints via Swagger UI, this bot’s got your back — answers come with context, citations, and zero fuss.
+
+---
+
+## 🚀 Quickstart
+
+```bash
+# 1. Clone & install
+git clone https://github.com/buseagkoc/construction-chatbot.git
+cd construction-chatbot
+pip install -e .
+
+# 2. Set up your environment
+cp .env.example .env
+# Open the .env file and paste your OpenAI API key
+
+# 3. Try out the CLI
+construction-chatbot chat "What’s a change order?"
+# You'll get a fallback response if no documents are uploaded yet
+
+# 4. Run the web API
+construction-chatbot-api
+# Then open http://localhost:8000/docs in your browser
+
 
 ## Features
 
-- Process and analyze construction PDFs
-- Extract structured sections from documents
-- Query documents using natural language
-- Get context-aware responses with source citations
-- Batch processing for efficient document handling
+-Ask questions using CLI or API
+-Upload and parse PDFs into vector embeddings
+-Get context-aware answers with citations
+-Cache frequent queries with Redis
+-Handles conversation memory
+-CLI and FastAPI entrypoints — both install-and-run ready
+
+
 
 ## Tech Stack
 
-- FastAPI for API endpoints
-- ChromaDB for vector storage
-- OpenAI GPT-4 for response generation
-- Redis for response caching
-- PyMuPDF for PDF processing
+-FastAPI – for web API
+-Typer – for CLI interface
+-ChromaDB – vector database
+-OpenAI GPT-4 – language model
+-Redis – for caching
+-PyMuPDF – PDF parsing
+-Pydantic + Dotenv – environment config
 
 ## Project Structure
 
-```
 construction-chatbot/
-├── app/
-│   ├── __init__.py
-│   ├── document_processor.py  # PDF section extraction
-│   ├── pdf_handler.py        # PDF file operations
-│   ├── retriever.py         # Vector storage & RAG
-│   └── chatbot.py          # Core chatbot logic
-├── data/
-│   └── documents/          # Document storage
-├── main.py                 # FastAPI application
-└── requirements.txt        # Dependencies
-```
+├── construction_chatbot/
+│   ├── __main__.py
+│   ├── webserver.py
+│   ├── chatbot.py
+│   ├── config.py
+│   ├── document_processor.py
+│   ├── pdf_handler.py
+│   └── retriever.py
+├── tests/
+│   ├── test_chat.py
+│   └── test_ingest.py
+├── .env.example
+├── pyproject.toml
+├── requirements.txt
+├── README.md
+└── .gitignore
 
-## Setup
+## Run Test
+pytest
+# All tests are mocked — no PDFs needed to validate logic
 
-1. Install dependencies:
-```bash
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-```
+## CLI Usage Example
+construction-chatbot chat "What’s the insulation spec for roofing?"
 
-2. Configure environment:
-```bash
-cp .env.example .env
-# Add your OpenAI API key to .env
-```
+## API Usage Example
 
-3. Start Redis:
-```bash
-redis-server
-```
+construction-chatbot-api
+# Open http://localhost:8000/docs in your browser
 
-4. Run the application:
-```bash
-python main.py
-```
+## To Do
 
-## API Usage
+ Add .docx and .html support
 
-### Upload Document
-```bash
-curl -X POST -F "file=@example.pdf" http://localhost:8000/documents/upload
-```
+ Document version tracking
 
-### Query Document
-```bash
-curl -X POST \
-  -H "Content-Type: application/json" \
-  -d '{"message": "What are the concrete specifications?"}' \
-  http://localhost:8000/chat
-```
+ User authentication
 
-## Development Notes
+ Publish to PyPI & Docker
 
-- Handles both small and large documents efficiently
-- Processes documents in batches to optimize throughput
-- Implements caching to reduce redundant API calls
-- Uses conversation history for context-aware responses
+ Add example PDF + notebook dem
 
-## Todo
+#Contribution
 
-- [ ] Add user authentication
-- [ ] Implement document version tracking
-- [ ] Add more Florida construction law context
-- [ ] Enhance section extraction for complex documents
+git checkout -b feature/my-awesome-feature
+# make your changes
+pytest
+black .
+git commit -m "Add: my awesome feature"
+
+## License
+Free to use, remix, and build upon (note: this is POC & MPV level)
