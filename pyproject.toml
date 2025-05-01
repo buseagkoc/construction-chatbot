@@ -1,27 +1,19 @@
-[build-system]
-requires = ["setuptools>=61.0", "wheel"]
-build-backend = "setuptools.build_meta"
-
 [project]
 name = "construction-chatbot"
 version = "0.1.0"
 description = "A RAG-based chatbot for construction documents"
-authors = [{ name="Suna Buse", email="suna@example.com" }]
-license = { text="MIT" }
+license = { text = "MIT" }
 readme = "README.md"
 requires-python = ">=3.9"
 
-[project.optional-dependencies]
-dev = [
-  "pytest",
-  "pytest-asyncio"
-]
-
 dependencies = [
-    "fastapi", "uvicorn", "chromadb", "openai", "redis.asyncio",
-    "pydantic-settings", "python-dotenv", "PyMuPDF", "typer"
+  "fastapi",
+  "uvicorn",
+  "chromadb",
+  "openai",
+  "redis",             # ← corrected
+  "pydantic-settings",
+  "python-dotenv",
+  "PyMuPDF",
+  "typer"
 ]
-
-[project.scripts]
-construction-chatbot = "construction_chatbot.__main__:main"
-construction-chatbot-api = "construction_chatbot.webserver:start"

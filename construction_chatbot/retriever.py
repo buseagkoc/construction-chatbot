@@ -1,7 +1,7 @@
 import asyncio
 import chromadb
 import openai
-import redis.asyncio as redis
+import redis
 import logging
 import json
 from typing import List, Dict, Optional
@@ -17,7 +17,11 @@ class DocumentRetriever:
     def __init__(self):
         # Initialize vector store for document sections
         self.vector_store = chromadb.Client()
-        self.collection = self.vector_store.create_collection("construction_docs")
+        # Use get_or_create to avoid errors if collection already exists
+        self.collection = self.vector_store.create_collection(
+            "construction_docs",
+            get_or_create=True
+        )
         
         # Redis for caching frequent queries
         self.redis = redis.from_url(settings.REDIS_URL)
