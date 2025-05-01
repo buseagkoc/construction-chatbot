@@ -1,13 +1,15 @@
 # Construction Chatbot
 
-[![PyPI version](https://img.shields.io/badge/pypi-coming_soon-blue)]  
-[![CI](https://github.com/buseagkoc/construction-chatbot/actions/workflows/ci.yml/badge.svg)]
+[![PyPI version](https://img.shields.io/badge/pypi-coming_soon-blue)](https://pypi.org/project/construction-chatbot/) [![CI](https://github.com/buseagkoc/construction-chatbot/actions/workflows/ci.yml/badge.svg)](https://github.com/buseagkoc/construction-chatbot/actions)
 
-A lightweight RAG-powered chatbot built to query construction documents like specs, contracts, and legal PDFs using natural language. Whether you're using the command line or testing endpoints via Swagger UI, this bot’s got your back — answers come with context, citations, and zero fuss.
+
+A lightweight RAG-powered chatbot built to query construction documents like specs, contracts, and legal PDFs using natural language. Whether you're using the command line or testing endpoints via Swagger UI, this bot’s got your back — context-aware answers.
+
+Query construction documents using natural language. RAG, GPT-4, FastAPI, CLI.
 
 ---
 
-## 🚀 Quickstart
+## Quickstart
 
 ```bash
 # 1. Clone & install
